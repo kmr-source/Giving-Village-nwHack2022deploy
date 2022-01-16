@@ -1,11 +1,15 @@
 import json
 import requests
 import test_data
+import os
 
 from flask import Flask, render_template
 from config_keys import api_key as api_key
 from flask_sqlalchemy import SQLAlchemy
 from uuid import uuid4
+
+# connecting host to heroku
+post = int(os.environ.get('Port',5000))
 
 DB_NAME = "database.db"
 app = Flask(__name__)
@@ -156,5 +160,7 @@ def pantries():
 
 
 if __name__ == '__main__':
-    app.run()
+    # comment out orginal code to test out heroku
+    # app.run()
     # db.init_app(app)
+    app.run(host='0.0.0.0', port=post, debug=True)
