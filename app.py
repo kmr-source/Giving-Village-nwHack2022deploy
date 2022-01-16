@@ -96,7 +96,7 @@ def index():
 
 @app.route('/fridges')
 def fridges():
-    return render_template('map.html')
+    return render_template('map.html', api_key=api_key)
 
 
 if __name__ == '__main__':
