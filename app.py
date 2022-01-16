@@ -20,7 +20,7 @@ class Resource(db.Model):
     __abstract__ = True
     name = db.Column(db.String(100))
     location = db.Column(db.String(100))
-    id = db.Column(db.String(100), unique=True)
+    id = db.Column(db.String(100), unique=True, primary_key=True)
     img = db.Column(db.String(100))
     hrs = db.Column(db.Integer)
     description = db.Column(db.String(1000))
@@ -45,7 +45,7 @@ class Fridge(Resource):
     Represents a community fridge.
     Contains information about if there is a freezer or pantry section.
     """
-    fridge_info = db.Column(db.ARRAY)
+    fridge_info = db.Column(db.String)
 
 
 class Pantry(Resource):
@@ -60,30 +60,30 @@ db.create_all()
 
 
 # TEST CODE - example usage
-# class users(db.Model):
-#     _id = db.Column(db.Integer, primary_key=True)
-#     name = db.Column(db.String(100))
-#     email = db.Column(db.String(100))
-#
-#     def __init__(self, name, email):
-#         self.name = name
-#         self.email = email
-#
-#
-# @app.route('/dbtest')
-# def testing():
-#     tester_user = users("kat", "potato")
-#     db.session.add(tester_user)
-#     db.session.commit()
-#     return f'<h1> added a test user </h1>'
-#
-#
-# @app.route('/dbverifying')
-# def verifying():
-#     verified_username = "kat"
-#     found = users.query.filter_by(name=verified_username).first()
-#     return f'<h1> {found.email} </h1>'
-#
+class users(db.Model):
+    _id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100))
+    email = db.Column(db.String(100))
+
+    def __init__(self, name, email):
+        self.name = name
+        self.email = email
+
+
+@app.route('/dbtest')
+def testing():
+    tester_user = users("kat", "potato")
+    db.session.add(tester_user)
+    db.session.commit()
+    return f'<h1> added a test user </h1>'
+
+
+@app.route('/dbverifying')
+def verifying():
+    verified_username = "kat"
+    found = users.query.filter_by(name=verified_username).first()
+    return f'<h1> {found.email} </h1>'
+
 
 @app.route('/', methods=['GET'])
 def index():
