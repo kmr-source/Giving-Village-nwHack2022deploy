@@ -13,15 +13,16 @@ fridge_data = [
     Fridge("Full fridge, freezer, pantry",
            "29 West Hastings Street",
            name="Vancouver Women's Health Collective",
+           description="This fridge is located in the alley behind the blue house"
            ),
 ]
 
 pantry_data = [
     Pantry(
-        "E 6th street between commercial & victoria",
+        "E 6th street, Vancouver, BC",
         social_media="@van.periodpantry",
         description="Located between Commercial & Victoria. E-transfer donations to vancouver.periodpantry@gmail.com",
-        name="vancouver period pantry",
+        name="Vancouver Period Pantry",
         website="https://linktr.ee/van.periodpantry"
     ),
     Pantry(

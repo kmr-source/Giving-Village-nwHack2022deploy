@@ -157,7 +157,7 @@ def pantries():
     for pantry in test_data.pantry_data:
         data["pantries"].append(pantry.serialize())
 
-    return render_template('map.html', api_key=api_key, data=json.dumps(data))
+    return render_template('pantry.html', api_key=api_key, data=data)
 
 
 if __name__ == '__main__':
