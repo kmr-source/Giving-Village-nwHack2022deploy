@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="d-block mx-auto" id="map" style="width: 50%; height: 500px" onload="initMap()">
+    <div class="container-fluid" id="map" onload="initMap()">
     </div>
     <script src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}"></script>
     <script type="text/javascript" src="{{ url_for("static", filename="script.js") }}"></script>
