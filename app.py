@@ -17,7 +17,7 @@ def index():
     endpoint = f"https://maps.googleapis.com/maps/api/geocode/json?key={api_key}&address={address}"
     req = requests.get(endpoint)
     data = json.loads(req.content)
-    return render_template('map.html', data=data)
+    return render_template('map.html', api_key=api_key)
 
 
 @app.route('/getdata', methods=['GET', 'POST'])
