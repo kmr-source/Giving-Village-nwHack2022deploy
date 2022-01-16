@@ -162,6 +162,6 @@ def pantries():
 
 if __name__ == '__main__':
     # comment out orginal code to test out heroku
-    # app.run()
+    #app.run()
     #  db.init_app(app)
     app.run(host='0.0.0.0', port=post, debug=True)
