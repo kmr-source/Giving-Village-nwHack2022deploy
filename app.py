@@ -4,7 +4,6 @@ import googlemaps
 
 from flask import Flask, render_template
 from config_keys import api_key as api_key
-from config_keys import geo_key as geo_key
 
 app = Flask(__name__)
 
