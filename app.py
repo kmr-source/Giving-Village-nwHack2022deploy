@@ -20,11 +20,20 @@ class Resource(db.Model):
     __abstract__ = True
     name = db.Column(db.String(100))
     location = db.Column(db.String(100))
-    id = db.Column(db.String(100), unique=True, primary_key=True)
+    id_key = db.Column(db.String(100), unique=True, primary_key=True)
     img = db.Column(db.String(100))
-    hrs = db.Column(db.Integer)
+    hrs = db.Column(db.String)
     description = db.Column(db.String(1000))
+
     # isFreeLibrary, bool
+
+    def __init__(self, location, id, name=None, img=None, hrs="24/7", description=None):
+        self.name = name
+        self.location = location
+        self.id_key = id
+        self.img = img
+        self.hrs = hrs
+        self.description = description
 
 
 class Shelter(Resource):
@@ -33,11 +42,15 @@ class Shelter(Resource):
     https://opendata.vancouver.ca/explore/dataset/homeless-shelter-locations/api/
     """
     facility_info = db.Column(db.PickleType)
+
     # ^ PICKLE TYPE: Holds Python objects, which are serialized using pickle.
     # PickleType builds upon the Binary type to apply Python’s pickle.dumps() to incoming objects,
     # and pickle.loads() on the way out, allowing any pickleable Python object to be stored as a
     # serialized binary field.
     # https://docs.sqlalchemy.org/en/14/core/type_basics.html#sqlalchemy.types.PickleType
+    def __init__(self, facility_info, location, id_key, name=None, img=None, hrs="24/7", description=None):
+        super().__init__(location, id_key, name=name, img=img, hrs=hrs, description=description)
+        self.facility_info = facility_info
 
 
 class Fridge(Resource):
@@ -47,6 +60,10 @@ class Fridge(Resource):
     """
     fridge_info = db.Column(db.String)
 
+    def __init__(self, fridge_info, location, id_key, name=None, img=None, hrs="24/7", description=None):
+        super().__init__(location, id_key, name=name, img=img, hrs=hrs, description=description)
+        self.fridge_info = fridge_info
+
 
 class Pantry(Resource):
     """
@@ -54,6 +71,11 @@ class Pantry(Resource):
     """
     website = db.Column(db.String)
     social_media = db.Column(db.String)
+
+    def __init__(self, website, social_media, location, id_key, name=None, img=None, hrs="24/7", description=None):
+        super().__init__(location, id_key, name=name, img=img, hrs=hrs, description=description)
+        self.website = website
+        self.social_media = social_media
 
 
 db.create_all()
