@@ -9,6 +9,7 @@
  .content p {
      padding: 0.5em;
      border: 1px solid black;
+     word-wrap: break-word;
  }
 
 footer {

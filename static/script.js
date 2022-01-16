@@ -70,7 +70,6 @@ function placeMarkers(data, getContent) {
 }
 
 function fridgeContentString(data) {
-    console.log(data.description);
     return `
         <div id="content">
         <h4>${data.name}</h4>
@@ -86,3 +85,19 @@ function initFridge(data) {
     placeMarkers(data.fridges, fridgeContentString);
 }
 
+function pantryContentString(data) {
+    return `
+        <div id="content">
+        <h4>${data.name}</h4>
+        <b>Description:</b> ${data.description} <br/>
+        <b>Open:</b> ${data.hrs} <br/>
+        <b>Website:</b> ${data.website} <br/>
+        <b>Social Media:</b> ${data.social_media} <br/>
+        </div>
+    `
+}
+
+function initPantry(data) {
+    init();
+    placeMarkers(data.pantries, pantryContentString);
+}
