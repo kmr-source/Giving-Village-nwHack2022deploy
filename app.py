@@ -1,16 +1,21 @@
 import json
 import requests
 import test_data
+import os
 
 from flask import Flask, render_template
 from config_keys import api_key as api_key
 from flask_sqlalchemy import SQLAlchemy
 from uuid import uuid4
 
+# connecting host to heroku
+post = int(os.environ.get('Port',5000))
+
 DB_NAME = "database.db"
 app = Flask(__name__)
 app.secret_key = "epic haxxxxx"
-app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
+app.config['SQLACHEMY_DATABASE_URI'] = 'postgresql:///{DB_NAME}'
+#app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
 
 db = SQLAlchemy(app)
 
@@ -152,9 +157,11 @@ def pantries():
     for pantry in test_data.pantry_data:
         data["pantries"].append(pantry.serialize())
 
-    return render_template('map.html', api_key=api_key, data=json.dumps(data))
+    return render_template('pantry.html', api_key=api_key, data=data)
 
 
 if __name__ == '__main__':
-    app.run()
-    # db.init_app(app)
+    # comment out orginal code to test out heroku
+    #app.run()
+    #  db.init_app(app)
+    app.run(host='0.0.0.0', port=post, debug=True)
