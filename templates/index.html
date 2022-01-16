@@ -13,8 +13,8 @@
           Get what you need and give what you can.
       </p>
       <p>
-        <a href="#" class="btn btn-primary my-2">Share a Resource</a>
-        <a href="#" class="btn btn-secondary my-2">View All Resources</a>
+        <a href="#" class="btn disabled btn-primary my-2" >Share a Resource</a>
+        <a href="/fridges" class="btn disabled btn-secondary my-2">View All Resources</a>
       </p>
     </div>
   </section>
@@ -28,9 +28,12 @@
               <img class="img-responsive" src="{{ url_for('static', filename='images/burnaby-community-fridge-final.jpg') }}">
             <div class="card-body">
               <h2 class="card-text text-center font-weight-light">Fridges</h2>
+              <p class="card-text text-center">Community maintained fridges you can take from or add to.</p>
               <div class="d-flex justify-content-center">
                 <div class="btn-group">
+                    <a href="/fridges">
                   <button type="button" class="btn btn-md btn-outline-secondary">Find</button>
+                    </a>
                 </div>
               </div>
             </div>
@@ -41,9 +44,13 @@
               <img class="img-responsive"  src="{{ url_for('static', filename='images/pantry1.jpg') }}">
             <div class="card-body">
               <h2 class="card-text text-center font-weight-light">Pantries</h2>
+                              <p class="card-text text-center">Little pantries stocked with feminine hygiene products or grocery items.</p>
+
               <div class="d-flex justify-content-center">
                 <div class="btn-group">
+                    <a href="/pantries">
                   <button type="button" class="btn btn-md btn-outline-secondary">Find</button>
+                    </a>
                 </div>
               </div>
             </div>
@@ -54,9 +61,12 @@
               <img class="img-responsive"  src="{{ url_for('static', filename='images/community.jpeg') }}">
             <div class="card-body">
               <h2 class="card-text text-center font-weight-light">Community Kitchens</h2>
-              <div class="d-flex justify-content-center">
+                             <br>
+
+              <p class="card-text text-center">Feature coming soon</p>
+                <div class="d-flex justify-content-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-md btn-outline-secondary">Find</button>
+                  <button type="button" class="disabled btn btn-md btn-outline-secondary">Find</button>
                 </div>
               </div>
             </div>
@@ -68,9 +78,12 @@
               <img class="img-responsive"  src="{{ url_for('static', filename='images/shelter.jpeg') }}">
             <div class="card-body">
               <h2 class="card-text text-center font-weight-light">Shelters</h2>
-              <div class="d-flex justify-content-center">
+                                             <br>
+
+              <p class="card-text text-center">Feature coming soon</p>
+                <div class="d-flex justify-content-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-md btn-outline-secondary">Find</button>
+                  <button type="button" class="disabled btn btn-md btn-outline-secondary">Find</button>
                 </div>
               </div>
             </div>
@@ -81,9 +94,12 @@
               <img class="img-responsive"  src="{{ url_for('static', filename='images/library1.jpeg') }}">
             <div class="card-body">
               <h2 class="card-text text-center font-weight-light">Little Free Libraries</h2>
-              <div class="d-flex justify-content-center">
+                                           <br>
+
+                <p class="card-text text-center">Feature coming soon</p>
+                <div class="d-flex justify-content-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-md btn-outline-secondary">Find</button>
+                  <button type="button" class="disabled btn btn-md btn-outline-secondary">Find</button>
                 </div>
               </div>
             </div>
