@@ -13,6 +13,7 @@ fridge_data = [
     Fridge("Full fridge, freezer, pantry",
            "29 West Hastings Street",
            name="Vancouver Women's Health Collective",
+           description="This fridge is located in the alley behind the blue house"
            ),
 ]
 
