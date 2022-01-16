@@ -2,7 +2,7 @@ import json
 import requests
 
 from flask import Flask, render_template
-from secrets import api_key as api_key
+from config_keys import api_key as api_key
 
 app = Flask(__name__)
 
