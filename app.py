@@ -4,6 +4,7 @@ import requests
 from flask import Flask, render_template
 from config_keys import api_key as api_key
 from flask_sqlalchemy import SQLAlchemy
+from os import path
 
 db =SQLAlchemy()
 DB_NAME = "database.db"
@@ -26,8 +27,13 @@ def getdata():
     return json_data
 
 
+
 if __name__ == '__main__':
     app.run(debug=True)
-    app.config['SQLALCHEMY_DATABASE_URI']= f'sqlite:///{DB_NAME}'
+    #app.config['SQLALCHEMY_DATABASE_URI']= f'sqlite:///{DB_NAME}'
     db.init_app(app)
+
+    from models import Fridge, Pantry, Shelter
+
+    db.create_all()
 
