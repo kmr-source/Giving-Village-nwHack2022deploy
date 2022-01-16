@@ -4,6 +4,7 @@ import requests
 from flask import Flask, render_template
 from config_keys import api_key as api_key
 from flask_sqlalchemy import SQLAlchemy
+from uuid import uuid4
 
 DB_NAME = "database.db"
 app = Flask(__name__)
@@ -27,10 +28,10 @@ class Resource(db.Model):
 
     # isFreeLibrary, bool
 
-    def __init__(self, location, id, name=None, img=None, hrs="24/7", description=None):
+    def __init__(self, location, name=None, img=None, hrs="24/7", description=None):
         self.name = name
         self.location = location
-        self.id_key = id
+        self.id_key = uuid4()
         self.img = img
         self.hrs = hrs
         self.description = description
@@ -48,8 +49,8 @@ class Shelter(Resource):
     # and pickle.loads() on the way out, allowing any pickleable Python object to be stored as a
     # serialized binary field.
     # https://docs.sqlalchemy.org/en/14/core/type_basics.html#sqlalchemy.types.PickleType
-    def __init__(self, facility_info, location, id_key, name=None, img=None, hrs="24/7", description=None):
-        super().__init__(location, id_key, name=name, img=img, hrs=hrs, description=description)
+    def __init__(self, facility_info, location, name=None, img=None, hrs="24/7", description=None):
+        super().__init__(location, name=name, img=img, hrs=hrs, description=description)
         self.facility_info = facility_info
 
 
@@ -60,8 +61,8 @@ class Fridge(Resource):
     """
     fridge_info = db.Column(db.String)
 
-    def __init__(self, fridge_info, location, id_key, name=None, img=None, hrs="24/7", description=None):
-        super().__init__(location, id_key, name=name, img=img, hrs=hrs, description=description)
+    def __init__(self, fridge_info, location, name=None, img=None, hrs="24/7", description=None):
+        super().__init__(location, name=name, img=img, hrs=hrs, description=description)
         self.fridge_info = fridge_info
 
 
@@ -72,8 +73,8 @@ class Pantry(Resource):
     website = db.Column(db.String)
     social_media = db.Column(db.String)
 
-    def __init__(self, website, social_media, location, id_key, name=None, img=None, hrs="24/7", description=None):
-        super().__init__(location, id_key, name=name, img=img, hrs=hrs, description=description)
+    def __init__(self, website, social_media, location, name=None, img=None, hrs="24/7", description=None):
+        super().__init__(location, name=name, img=img, hrs=hrs, description=description)
         self.website = website
         self.social_media = social_media
 
