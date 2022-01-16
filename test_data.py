@@ -18,9 +18,9 @@ fridge_data = [
 
 pantry_data = [
     Pantry(
-        "E6th street between commercial & victoria",
+        "E 6th street between commercial & victoria",
         social_media="@van.periodpantry",
-        description="e-transfer donations to vancouver.periodpantry@gmail.com",
+        description="Located between Commercial & Victoria. E-transfer donations to vancouver.periodpantry@gmail.com",
         name="vancouver period pantry",
         website="https://linktr.ee/van.periodpantry"
     ),

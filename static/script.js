@@ -18,6 +18,10 @@ function initMap() {
             });
     }
 
+    return map;
+}
+
+function placeMarkers(map, data, getContent) {
     let marker;
     let infoWindow;
     let locations = [
@@ -26,6 +30,8 @@ function initMap() {
     ];
 
     for (let i = 0; i < locations.length; i++) {
+        // let contentString = getContent(data);
+
         marker = new google.maps.Marker({
             position: new google.maps.LatLng(locations[i].lat, locations[i].lng),
             map: map,
@@ -38,13 +44,12 @@ function initMap() {
                     infoWindow.close();
                 }
                 infoWindow = new google.maps.InfoWindow({
-                    title: locations[i].name,
-                    content: locations[i].type
+                    content: contentString
                 });
                 infoWindow.open({
                     map,
                     anchor: marker,
-                    shouldFocus: true,
+                    shouldFocus: false,
                 });
                 map.panTo(marker.getPosition());
             });
@@ -52,4 +57,18 @@ function initMap() {
     }
 }
 
-initMap();
+function fridgeContentString(data) {
+    return `
+        <div id="content">
+        <h4>${data.name}</h4>
+        <p><b>Open:</b> $(data.hrs)</p>
+        <p><b>Additional Info:</b> $(data.fridge_info)</p>
+        </div>
+    `
+}
+
+function initFridge(data) {
+    let map = initMap();
+    placeMarkers(map, data, fridgeContentString);
+}
+
