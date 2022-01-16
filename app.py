@@ -68,12 +68,12 @@ class Fridge(Resource):
 
 class Pantry(Resource):
     """
-    Represents free pantries with groceries.
+    Represents free pantries with hygienic products or groceries.
     """
     website = db.Column(db.String)
     social_media = db.Column(db.String)
 
-    def __init__(self, website, social_media, location, name=None, img=None, hrs="24/7", description=None):
+    def __init__(self, location, social_media=None, website=None, name=None, img=None, hrs="24/7", description=None):
         super().__init__(location, name=name, img=img, hrs=hrs, description=description)
         self.website = website
         self.social_media = social_media
