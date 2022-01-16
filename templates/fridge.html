@@ -3,7 +3,7 @@
 {% block content %}
     <div class="row">
         <div class="col-sm-3 content">
-        {% for d in JSON.parse(data['fridges']) %}
+        {% for d in data['fridges'] %}
             <p>
             {% for k, v in d.items() %}
                 <b>{{ k.capitalize() }}:</b> {{ v }}<br />
@@ -11,9 +11,12 @@
             </p>
         {% endfor %}
         </div>
-        <div class="col-sm-9" id="map" onload="initMap({{ JSON.parse(data['fridges']) }})">
+        <div class="col-sm-9" id="map">
         </div>
     </div>
     <script src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}"></script>
     <script type="text/javascript" src="{{ url_for("static", filename="script.js") }}"></script>
+    <script type="text/javascript">
+        initFridge({{ data|tojson }});
+    </script>
 {% endblock %}

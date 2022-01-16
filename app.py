@@ -1,5 +1,6 @@
 import json
 import requests
+import test_data
 
 from flask import Flask, render_template
 from config_keys import api_key as api_key
@@ -36,6 +37,9 @@ class Resource(db.Model):
         self.hrs = hrs
         self.description = description
 
+    def serialize(self):
+        return {"name": self.name, "location": self.location, "description": self.description, "hrs": self.hrs}
+
 
 class Shelter(Resource):
     """
@@ -53,6 +57,11 @@ class Shelter(Resource):
         super().__init__(location, name=name, img=img, hrs=hrs, description=description)
         self.facility_info = facility_info
 
+    def serialize(self):
+        data = super().serialize()
+        data["facility_info"] = self.facility_info
+        return data
+
 
 class Fridge(Resource):
     """
@@ -64,6 +73,11 @@ class Fridge(Resource):
     def __init__(self, fridge_info, location, name=None, img=None, hrs="24/7", description=None):
         super().__init__(location, name=name, img=img, hrs=hrs, description=description)
         self.fridge_info = fridge_info
+
+    def serialize(self):
+        data = super().serialize()
+        data["fridge_info"] = self.fridge_info
+        return data
 
 
 class Pantry(Resource):
@@ -77,6 +91,12 @@ class Pantry(Resource):
         super().__init__(location, name=name, img=img, hrs=hrs, description=description)
         self.website = website
         self.social_media = social_media
+
+    def serialize(self):
+        data = super().serialize()
+        data["website"] = self.website
+        data["social_media"] = self.social_media
+        return data
 
 
 db.create_all()
@@ -114,12 +134,25 @@ def index():
     endpoint = f"https://maps.googleapis.com/maps/api/geocode/json?key={api_key}&address={address}"
     req = requests.get(endpoint)
     data = json.loads(req.content)
-    return render_template('index.html', api_key=api_key)
+    return render_template('index.html')
 
 
 @app.route('/fridges')
 def fridges():
-    return render_template('map.html', api_key=api_key)
+    data = {"fridges": []}
+    for fridge in test_data.fridge_data:
+        data["fridges"].append(fridge.serialize())
+
+    return render_template('fridge.html', api_key=api_key, data=data)
+
+
+@app.route('/pantries')
+def pantries():
+    data = {"pantries": []}
+    for pantry in test_data.pantry_data:
+        data["pantries"].append(pantry.serialize())
+
+    return render_template('map.html', api_key=api_key, data=json.dumps(data))
 
 
 if __name__ == '__main__':
