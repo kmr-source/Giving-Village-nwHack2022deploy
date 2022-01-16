@@ -55,7 +55,8 @@ function placeMarkers(data, getContent) {
                         infoWindow.close();
                     }
                     infoWindow = new google.maps.InfoWindow({
-                        content: contentString
+                        content: contentString,
+                        maxWidth: 400
                     });
                     infoWindow.open({
                         map,
@@ -70,9 +71,17 @@ function placeMarkers(data, getContent) {
 }
 
 function fridgeContentString(data) {
+    let imgUrl = ((data.img === undefined) ?
+        "https://scontent-sea1-1.xx.fbcdn.net/v/t39.30808-6/244433291_343320703825176_3529997055078043805_n.jpg?_" +
+        "nc_cat=107&ccb=1-5&_nc_sid=a26aad&_nc_ohc=FTkkdsbDh54AX8y78Rw&_nc_ht=scontent-sea1-1.xx&oh=00_AT-yXvaXActW" +
+        "Fh7ndwRHSk0M5CmmnHD_-OKSrj59oRzxQg&oe=61E9381F" : data.img);
+
+    console.log(imgUrl);
+
     return `
         <div id="content">
         <h4>${data.name}</h4>
+        <img src=${imgUrl} /> <br />
         <b>Description:</b> ${data.description} <br/>
         <b>Open:</b> ${data.hrs} <br/>
         <b>Additional Info:</b> ${data.fridge_info} <br/>
@@ -91,7 +100,7 @@ function pantryContentString(data) {
         <h4>${data.name}</h4>
         <b>Description:</b> ${data.description} <br/>
         <b>Open:</b> ${data.hrs} <br/>
-        <b>Website:</b> ${data.website} <br/>
+        <b>Website:</b><a href=${data.website}>${data.website}</a> <br/>
         <b>Social Media:</b> ${data.social_media} <br/>
         </div>
     `

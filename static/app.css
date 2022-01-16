@@ -12,6 +12,10 @@
      word-wrap: break-word;
  }
 
+ #content img {
+     max-width: 40%;
+ }
+
 footer {
   padding-top: 3rem;
   padding-bottom: 3rem;

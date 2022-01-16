@@ -15,6 +15,18 @@ fridge_data = [
            name="Vancouver Women's Health Collective",
            description="This fridge is located in the alley behind the blue house"
            ),
+    Fridge("Full fridge, freezer, pantry",
+           "340 West 2nd Avenue, Vancouver, BC",
+           name="Food Stash Foundation",
+           description="This fridge is located in the alley behind the blue house"
+           ),
+    Fridge("Full fridge, freezer, pantry",
+           "3718 Main Street, Vancouver, BC",
+           name="The Soap Dispensary & Kitchen Staples",
+           description="Located in the heart of Main Street!",
+           img="https://scontent-sea1-1.xx.fbcdn.net/v/t39.30808-6/215763969_288689355954978_4168483443270479323_n.jpg?" 
+               "_nc_cat=103&ccb=1-5&_nc_sid=a26aad&_nc_ohc=AxakfH4qk_oAX9X7fwp&_nc_ht=scontent-sea1-1.xx&oh=00_AT9WT2xN7" 
+               "LUFOVRY1e3RePpD1Fq2gX-igzwKqOq97zde0g&oe=61E81965"),
 ]
 
 pantry_data = [
