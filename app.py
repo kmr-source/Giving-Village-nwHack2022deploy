@@ -17,13 +17,12 @@ def index():
     endpoint = f"https://maps.googleapis.com/maps/api/geocode/json?key={api_key}&address={address}"
     req = requests.get(endpoint)
     data = json.loads(req.content)
-    return render_template('map.html', api_key=api_key)
+    return render_template('index.html', api_key=api_key)
 
 
-@app.route('/getdata', methods=['GET', 'POST'])
-def getdata():
-    json_data = requests.get.args('json')
-    return json_data
+@app.route('/fridges')
+def fridges():
+    return render_template('map.html')
 
 
 if __name__ == '__main__':
