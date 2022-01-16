@@ -14,7 +14,8 @@ post = int(os.environ.get('Port',5000))
 DB_NAME = "database.db"
 app = Flask(__name__)
 app.secret_key = "epic haxxxxx"
-app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
+app.config['SQLACHEMY_DATABASE_URI'] = 'postgresql:///{DB_NAME}'
+#app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
 
 db = SQLAlchemy(app)
 
@@ -162,5 +163,5 @@ def pantries():
 if __name__ == '__main__':
     # comment out orginal code to test out heroku
     # app.run()
-    # db.init_app(app)
+    #  db.init_app(app)
     app.run(host='0.0.0.0', port=post, debug=True)
