@@ -13,7 +13,7 @@ post = int(os.environ.get('Port',5000))
 
 DB_NAME = "database.db"
 app = Flask(__name__)
-app.secret_key = "epic haxxxxx"
+# app.secret_key = "epic haxxxxx"
 app.config['SQLACHEMY_DATABASE_URI'] = 'postgresql:///{DB_NAME}'
 #app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
 
@@ -104,41 +104,11 @@ class Pantry(Resource):
         return data
 
 
-db.create_all()
+# db.create_all()
 
 
-# TEST CODE - example usage
-class users(db.Model):
-    _id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100))
-    email = db.Column(db.String(100))
-
-    def __init__(self, name, email):
-        self.name = name
-        self.email = email
-
-
-@app.route('/dbtest')
-def testing():
-    tester_user = users("kat", "potato")
-    db.session.add(tester_user)
-    db.session.commit()
-    return f'<h1> added a test user </h1>'
-
-
-@app.route('/dbverifying')
-def verifying():
-    verified_username = "kat"
-    found = users.query.filter_by(name=verified_username).first()
-    return f'<h1> {found.email} </h1>'
-
-
-@app.route('/', methods=['GET'])
+@app.route('/')
 def index():
-    address = "89 Nelson Street"
-    endpoint = f"https://maps.googleapis.com/maps/api/geocode/json?key={api_key}&address={address}"
-    req = requests.get(endpoint)
-    data = json.loads(req.content)
     return render_template('index.html')
 
 
@@ -162,6 +132,6 @@ def pantries():
 
 if __name__ == '__main__':
     # comment out orginal code to test out heroku
-    #app.run()
+    # app.run()
     #  db.init_app(app)
     app.run(host='0.0.0.0', port=post, debug=True)
