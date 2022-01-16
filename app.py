@@ -16,7 +16,7 @@ def index():
     req = requests.get(endpoint)
     data = json.loads(req.content)
 
-    return render_template('map.html')
+    return render_template('map.html', api_key=api_key)
 
 
 @app.route('/<pantry_id>')

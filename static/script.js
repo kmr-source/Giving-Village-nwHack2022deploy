@@ -1,4 +1,5 @@
-initMap();
+let geocoder;
+let map;
 
 function initMap() {
     const center = {lat: 40.731, lng: -73.997};
@@ -26,3 +27,9 @@ function initMap() {
             });
     }
 }
+
+function showLocations() {
+
+}
+
+initMap();
